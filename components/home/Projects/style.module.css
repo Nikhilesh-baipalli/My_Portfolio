@@ -22,10 +22,11 @@
 
 .sectionTitle {
     font-family: var(--font-oswald), sans-serif;
-    font-size: clamp(3rem, 7vw, 6rem);
+    font-size: clamp(2.25rem, 6vw, 5.5rem);
     font-weight: 400;
     margin: 0 0 24px;
-    line-height: 1;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
     color: #fff;
 }
 
@@ -178,25 +179,52 @@
     letter-spacing: 0.05em;
 }
 
+/* Hide hover preview on touch / small screens — tap row to open link */
+@media (max-width: 1024px) {
+    .modalContainer,
+    .cursor,
+    .cursorLabel {
+        display: none !important;
+    }
+}
+
 @media (max-width: 768px) {
     .projects {
-        padding: 60px 24px;
-        margin-top: 120px;
+        padding: 48px 20px;
+        margin-top: 100px;
+    }
+
+    .sectionHeader {
+        margin-bottom: 48px;
     }
 
     .project {
-        padding: 32px 0;
+        padding: 28px 0;
         flex-direction: column;
         align-items: flex-start;
-        gap: 12px;
+        gap: 10px;
+    }
+
+    .project h2 {
+        font-size: clamp(2rem, 9vw, 2.75rem);
     }
 
     .projectMeta {
         align-items: flex-start;
     }
 
-    .modalContainer {
-        width: 280px;
-        height: 260px;
+    .projectType {
+        font-size: 0.95rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .projects {
+        padding: 60px 40px;
+        margin-top: 140px;
+    }
+
+    .project {
+        padding: 40px 24px;
     }
 }

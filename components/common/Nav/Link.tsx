@@ -19,9 +19,9 @@ export default function Index({ data, isActive, setSelectedIndicator }: { data: 
             <motion.div
                 variants={scale}
                 animate={isActive ? "open" : "closed"}
-                className="w-2.5 h-2.5 bg-white rounded-full absolute -left-7.5"
+                className="w-2.5 h-2.5 bg-white rounded-full absolute -left-5 sm:-left-7.5"
             ></motion.div>
-            <Link href={href} className="text-white text-[56px] font-light no-underline hover:opacity-70 transition-opacity">
+            <Link href={href} className="text-white text-[clamp(2.25rem,9vw,56px)] font-light no-underline hover:opacity-70 transition-opacity">
                 {title}
             </Link>
         </motion.div>

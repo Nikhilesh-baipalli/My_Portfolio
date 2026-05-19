@@ -82,37 +82,80 @@ export default function ScrollShowcase() {
             const pin = pinRef.current;
             if (!track || !scrollSpace || !pin) return;
 
-            const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+            const mm = gsap.matchMedia();
 
-            const horizontalTween = gsap.to(track, {
-                x: getScrollAmount,
-                ease: 'none',
-                scrollTrigger: {
-                    trigger: scrollSpace,
-                    start: 'center center',
-                    end: () => `+=${track.scrollWidth}`,
-                    pin: pin,
-                    scrub: 1,
-                    invalidateOnRefresh: true,
-                    anticipatePin: 1,
-                },
+            mm.add('(min-width: 768px)', () => {
+                track.classList.remove(styles.trackMobile);
+                const panels = gsap.utils.toArray<HTMLElement>(`.${styles.panel}`);
+
+                // Fast slide-in when section enters, then horizontal scroll
+                gsap.from(panels, {
+                    scrollTrigger: {
+                        trigger: scrollSpace,
+                        start: 'top 72%',
+                        once: true,
+                    },
+                    x: 140,
+                    opacity: 0,
+                    duration: 0.4,
+                    stagger: 0.06,
+                    ease: 'power4.out',
+                });
+
+                const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+
+                const horizontalTween = gsap.to(track, {
+                    x: getScrollAmount,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: scrollSpace,
+                        start: 'center center',
+                        end: () => `+=${track.scrollWidth * 0.9}`,
+                        pin: pin,
+                        scrub: 0.55,
+                        invalidateOnRefresh: true,
+                        anticipatePin: 1,
+                    },
+                });
+
+                panels.forEach((panel) => {
+                    const inner = panel.querySelector(`.${styles.panelInner}`);
+                    if (!inner) return;
+
+                    gsap.from(inner, {
+                        x: 50,
+                        opacity: 0,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: panel,
+                            containerAnimation: horizontalTween,
+                            start: 'left 92%',
+                            end: 'left 50%',
+                            scrub: 0.35,
+                        },
+                    });
+                });
             });
 
-            gsap.utils.toArray<HTMLElement>(`.${styles.panel}`).forEach((panel) => {
-                const inner = panel.querySelector(`.${styles.panelInner}`);
-                if (!inner) return;
+            mm.add('(max-width: 767px)', () => {
+                gsap.set(track, { clearProps: 'all' });
+                track.classList.add(styles.trackMobile);
 
-                gsap.from(inner, {
-                    x: 80,
-                    opacity: 0.4,
-                    ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: panel,
-                        containerAnimation: horizontalTween,
-                        start: 'left 85%',
-                        end: 'left 35%',
-                        scrub: 1,
-                    },
+                gsap.utils.toArray<HTMLElement>(`.${styles.panel}`).forEach((panel) => {
+                    const inner = panel.querySelector(`.${styles.panelInner}`);
+                    if (!inner) return;
+
+                    gsap.from(inner, {
+                        y: 48,
+                        opacity: 0,
+                        duration: 0.8,
+                        ease: 'power3.out',
+                        scrollTrigger: {
+                            trigger: panel,
+                            start: 'top 88%',
+                            toggleActions: 'play none none reverse',
+                        },
+                    });
                 });
             });
 

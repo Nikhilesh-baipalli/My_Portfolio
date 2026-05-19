@@ -20,13 +20,13 @@ export default function About() {
             <Header />
             <div ref={container} className="bg-white">
                 {/* Hero Section */}
-                <section className="min-h-screen flex items-center justify-center px-8 pt-32">
+                <section className="min-h-screen flex items-center justify-center px-4 sm:px-8 pt-24 sm:pt-32">
                     <div className="max-w-350 w-full">
                         <motion.h1 
                             initial={{ opacity: 0, y: 100 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, ease: [0.76, 0, 0.24, 1] }}
-                            className="text-[15vw] font-oswald font-medium text-black leading-none"
+                            className="text-[clamp(2.5rem,12vw,15vw)] font-oswald font-medium text-black leading-none"
                         >
                             Helping brands thrive in the digital world
                         </motion.h1>
@@ -34,8 +34,8 @@ export default function About() {
                 </section>
 
                 {/* Introduction Text & Image Grid */}
-                <section className="py-32 px-20">
-                    <div className="max-w-350 mx-auto grid grid-cols-2 gap-20 items-center text-black">
+                <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-10 md:px-20">
+                    <div className="max-w-350 mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 items-center text-black">
                         <div className="text-black">
                             <ScrollText>
                                 I am a freelance designer and developer based in India. 
@@ -60,7 +60,7 @@ export default function About() {
                 </section>
 
                 {/* Philosophy Section */}
-                <section className="py-32 px-20">
+                <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-10 md:px-20">
                     <div className="max-w-350 mx-auto text-black">
                         <ScrollText>
                             My approach combines technical expertise with creative vision. 
@@ -70,7 +70,7 @@ export default function About() {
                 </section>
 
                 {/* Services Grid */}
-                <section className="py-32 px-20 bg-[#f5f5f5]">
+                <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-10 md:px-20 bg-[#f5f5f5]">
                     <div className="max-w-350 mx-auto text-black">
                         <motion.h2
                             initial={{ opacity: 0 }}
@@ -81,7 +81,7 @@ export default function About() {
                         >
                             Services
                         </motion.h2>
-                        <div className="grid grid-cols-2 gap-x-20 gap-y-16">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 md:gap-x-20 gap-y-12 md:gap-y-16">
                             {[
                                 { title: 'Web Development', desc: 'Building responsive, performant websites with modern technologies' },
                                 // { title: 'UI/UX Design', desc: 'Creating intuitive interfaces that users love' },
@@ -105,7 +105,7 @@ export default function About() {
                 </section>
 
                 {/* Closing Statement */}
-                <section className="py-32 px-20">
+                <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-10 md:px-20">
                     <div className="max-w-350 mx-auto text-black">
                         <ScrollText>
                             Let's work together to create something exceptional. 

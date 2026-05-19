@@ -33,10 +33,10 @@ export default function Nav() {
             initial="initial"
             animate="enter"
             exit="exit"
-            className="h-screen w-full sm:w-125 fixed right-0 top-0 bg-[#292929] text-white z-40 overflow-hidden"
+            className="h-[100dvh] w-full md:w-[min(500px,85vw)] fixed right-0 top-0 bg-[#292929] text-white z-40 overflow-hidden"
         >
-            <div className="box-border h-full p-25 flex flex-col justify-between">
-                <div onMouseLeave={() => { setSelectedIndicator(pathname) }} className="flex flex-col gap-3 mt-20">
+            <div className="box-border h-full p-8 sm:p-12 md:p-25 flex flex-col justify-between">
+                <div onMouseLeave={() => { setSelectedIndicator(pathname) }} className="flex flex-col gap-3 mt-12 sm:mt-16 md:mt-20">
                     <div className="border-b border-[#999999] uppercase text-[11px] mb-10 text-[#999999]">
                         <p>Navigation</p>
                     </div>

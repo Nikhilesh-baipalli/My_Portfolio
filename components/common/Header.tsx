@@ -45,11 +45,11 @@ export default function Header() {
 
     return (
         <>
-            <header className="absolute flex justify-between items-center px-10 py-8 w-full z-50 text-white mix-blend-difference">
+            <header className="absolute flex justify-between items-center px-4 py-4 sm:px-6 sm:py-6 md:px-10 md:py-8 w-full z-50 text-white mix-blend-difference">
                 <div className="flex items-center gap-2 group cursor-pointer">
                     <Magnetic>
-                        <div className="p-4 rounded-full group-hover:bg-white group-hover:text-black transition-colors duration-300">
-                            <span className="text-xl font-bold font-oswald flex items-center gap-2">
+                        <div className="p-2 sm:p-3 md:p-4 rounded-full group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                            <span className="text-base sm:text-lg md:text-xl font-bold font-oswald flex items-center gap-2">
                                 <FaCode /> Nikhilesh
                             </span>
                         </div>
@@ -59,7 +59,7 @@ export default function Header() {
                 <div className="flex items-center gap-4">
                     <div onClick={() => setIsActive(!isActive)} className="group relative z-50">
                         <Magnetic>
-                            <div className={`flex flex-col gap-1.5 cursor-pointer -mt-10 p-8 rounded-full transition-colors duration-300 ${isActive ? 'bg-blue-500' : 'group-hover:bg-white group-hover:text-black'}`}>
+                            <div className={`flex flex-col gap-1.5 cursor-pointer -mt-4 sm:-mt-6 md:-mt-10 p-4 sm:p-6 md:p-8 rounded-full transition-colors duration-300 ${isActive ? 'bg-blue-500' : 'group-hover:bg-white group-hover:text-black'}`}>
                                 <div className={`w-6 h-0.5 bg-current transition-all duration-300 ${isActive ? 'rotate-45 translate-y-1' : 'group-hover:w-8'}`}></div>
                                 <div className={`w-6 h-0.5 bg-current transition-all duration-300 ${isActive ? '-rotate-45 -translate-y-1' : 'group-hover:w-8'}`}></div>
                             </div>

@@ -16,6 +16,16 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Freelance Portfolio",
   description: "Portfolio of a Freelance Designer & Developer",
+  icons: {
+    icon: [],
+    apple: [],
+  },
+};
+
+export const viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
 };
 
 export default function RootLayout({

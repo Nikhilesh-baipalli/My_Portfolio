@@ -10,12 +10,12 @@ import Image from 'next/image';
 
 export const projects = [
     {
-        title: "Sasai",
-        category: "Luxury Jewelry",
+        title: "Jil Sander",
+        category: "Minimalist Fashion",
         year: "2024",
-        src: "/p1.png",
-        color: "#0a0a0a",
-        link: "https://sasaijewelry.com/"
+        src: "https://www.jilsander.com/on/demandware.static/-/Library-Sites-jilsander-shared/default/dw9c791832/projects/Jil-Sander-x-Puma-K-street/2000x970px_1.jpg",
+        color: "#f0f0f0",
+        link: "https://www.jilsander.com/"
     },
     {
         title: "Fieldstone",
@@ -26,12 +26,12 @@ export const projects = [
         link: "https://www.fieldstoneoutdoors.com/"
     },
     {
-        title: "COS",
-        category: "Contemporary Fashion",
-        year: "2023",
-        src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
-        color: "#e8e4df",
-        link: "https://www.cos.com/"
+        title: "Royal Attire",
+        category: "Luxury Clothing",
+        year: "2024",
+        src: "/p3.png",
+        color: "#EFE8D3",
+        link: "https://browserheaders.vercel.app/"
     },
     {
         title: "Stüssy",
@@ -42,20 +42,28 @@ export const projects = [
         link: "https://www.stussy.com/"
     },
     {
-        title: "A.P.C.",
-        category: "Parisian Ready-to-Wear",
-        year: "2023",
-        src: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop",
-        color: "#c4beb6",
-        link: "https://www.apc.fr/"
-    },
-    {
         title: "Everlane",
         category: "Modern Essentials",
-        year: "2022",
+        year: "2023",
         src: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?q=80&w=1200&auto=format&fit=crop",
         color: "#2c3e50",
         link: "https://www.everlane.com/"
+    },
+    {
+        title: "Lemaire",
+        category: "Parisian Craft",
+        year: "2023",
+        src: "https://images.unsplash.com/photo-1490481651871-ab68de25d43d?q=80&w=1200&auto=format&fit=crop",
+        color: "#3d3d3d",
+        link: "https://www.lemaire.fr/"
+    },
+    {
+        title: "Our Legacy",
+        category: "Scandinavian Ready-to-Wear",
+        year: "2022",
+        src: "https://images.unsplash.com/photo-1445205170230-053b83016050?q=80&w=1200&auto=format&fit=crop",
+        color: "#c4beb6",
+        link: "https://www.ourlegacy.com/"
     }
 ];
 
@@ -143,7 +151,7 @@ export default function Projects() {
     };
 
     return (
-        <div ref={sectionRef} onMouseMove={(e) => { moveItems(e.clientX, e.clientY) }} className={styles.projects}>
+        <div ref={sectionRef} onMouseMove={(e) => { moveItems(e.clientX, e.clientY) }} onMouseLeave={() => setModal({ active: false, index: 0 })} className={styles.projects}>
             <div ref={headerRef} className={styles.sectionHeader}>
                 <p className={styles.eyebrow}>Selected Work</p>
                 <h2 className={styles.sectionTitle}>Fashion &amp; Lifestyle</h2>
