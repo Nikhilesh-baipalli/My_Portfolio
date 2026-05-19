@@ -42,6 +42,8 @@ const marqueeRow1 = ['DESIGN', 'DEVELOP', 'ANIMATE', 'FASHION', 'COMMERCE', 'CRA
 const marqueeRow2 = ['NEXT.JS', 'GSAP', 'REACT', 'UI/UX', 'MOTION', 'BRANDS'];
 
 export default function ScrollShowcase() {
+    const sectionRef = useRef<HTMLElement>(null);
+    const scrollSpaceRef = useRef<HTMLDivElement>(null);
     const pinRef = useRef<HTMLDivElement>(null);
     const trackRef = useRef<HTMLDivElement>(null);
     const introRef = useRef<HTMLDivElement>(null);
@@ -76,8 +78,9 @@ export default function ScrollShowcase() {
             });
 
             const track = trackRef.current;
+            const scrollSpace = scrollSpaceRef.current;
             const pin = pinRef.current;
-            if (!track || !pin) return;
+            if (!track || !scrollSpace || !pin) return;
 
             const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
 
@@ -85,10 +88,10 @@ export default function ScrollShowcase() {
                 x: getScrollAmount,
                 ease: 'none',
                 scrollTrigger: {
-                    trigger: pin,
-                    start: 'top top',
+                    trigger: scrollSpace,
+                    start: 'center center',
                     end: () => `+=${track.scrollWidth}`,
-                    pin: true,
+                    pin: pin,
                     scrub: 1,
                     invalidateOnRefresh: true,
                     anticipatePin: 1,
@@ -100,14 +103,14 @@ export default function ScrollShowcase() {
                 if (!inner) return;
 
                 gsap.from(inner, {
-                    x: 100,
-                    opacity: 0.3,
+                    x: 80,
+                    opacity: 0.4,
                     ease: 'power2.out',
                     scrollTrigger: {
                         trigger: panel,
                         containerAnimation: horizontalTween,
                         start: 'left 85%',
-                        end: 'left 40%',
+                        end: 'left 35%',
                         scrub: 1,
                     },
                 });
@@ -129,13 +132,13 @@ export default function ScrollShowcase() {
                     { xPercent: 0, repeat: -1, duration: 28, ease: 'none' }
                 );
             }
-        });
+        }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
     return (
-        <section className={styles.section}>
+        <section ref={sectionRef} className={styles.section}>
             <div ref={introRef} className={styles.intro}>
                 <p className={styles.eyebrow}>Capabilities</p>
                 <h2 className={styles.introTitle}>
@@ -144,21 +147,23 @@ export default function ScrollShowcase() {
                 <div ref={lineRef} className={styles.line} />
             </div>
 
-            <div ref={pinRef} className={styles.pinWrap}>
-                <div ref={trackRef} className={styles.track}>
-                    {panels.map((panel) => (
-                        <article key={panel.num} className={styles.panel}>
-                            <div
-                                className={styles.panelInner}
-                                style={{ '--accent': panel.accent } as React.CSSProperties}
-                            >
-                                <span className={styles.panelNum}>{panel.num}</span>
-                                <h3 className={styles.panelTitle}>{panel.title}</h3>
-                                <p className={styles.panelBody}>{panel.body}</p>
-                                <div className={styles.panelGlow} />
-                            </div>
-                        </article>
-                    ))}
+            <div ref={scrollSpaceRef} className={styles.scrollSpace}>
+                <div ref={pinRef} className={styles.pinWrap}>
+                    <div ref={trackRef} className={styles.track}>
+                        {panels.map((panel) => (
+                            <article key={panel.num} className={styles.panel}>
+                                <div
+                                    className={styles.panelInner}
+                                    style={{ '--accent': panel.accent } as React.CSSProperties}
+                                >
+                                    <span className={styles.panelNum}>{panel.num}</span>
+                                    <h3 className={styles.panelTitle}>{panel.title}</h3>
+                                    <p className={styles.panelBody}>{panel.body}</p>
+                                    <div className={styles.panelGlow} />
+                                </div>
+                            </article>
+                        ))}
+                    </div>
                 </div>
             </div>
 

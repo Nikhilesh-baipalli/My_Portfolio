@@ -60,9 +60,9 @@ export const projects = [
 ];
 
 const scaleAnimation = {
-    initial: { scale: 0, x: "-50%", y: "-50%" },
-    enter: { scale: 1, x: "-50%", y: "-50%", transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as const } },
-    closed: { scale: 0, x: "-50%", y: "-50%", transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] as const } }
+    initial: { scale: 0 },
+    enter: { scale: 1, transition: { duration: 0.4, ease: [0.76, 0, 0.24, 1] as const } },
+    closed: { scale: 0, transition: { duration: 0.4, ease: [0.32, 0, 0.67, 0] as const } }
 };
 
 export default function Projects() {
@@ -104,29 +104,37 @@ export default function Projects() {
                 ease: "power4.out",
             });
 
-            gsap.from(`.${styles.project}`, {
-                scrollTrigger: {
-                    trigger: sectionRef.current,
-                    start: "top 75%",
-                },
-                y: 60,
-                opacity: 0,
-                stagger: 0.12,
-                duration: 0.9,
-                ease: "power3.out",
-            });
+            gsap.fromTo(
+                `.${styles.project}`,
+                { y: 60, opacity: 0 },
+                {
+                    y: 0,
+                    opacity: 1,
+                    stagger: 0.12,
+                    duration: 0.9,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: sectionRef.current,
+                        start: "top 75%",
+                        once: true,
+                    },
+                }
+            );
         }, sectionRef);
 
         return () => ctx.revert();
     }, []);
 
+    const MODAL_W = 420;
+    const MODAL_H = 380;
+
     const moveItems = (x: number, y: number) => {
-        xMoveContainer.current?.(x);
-        yMoveContainer.current?.(y);
-        xMoveCursor.current?.(x);
-        yMoveCursor.current?.(y);
-        xMoveCursorLabel.current?.(x);
-        yMoveCursorLabel.current?.(y);
+        xMoveContainer.current?.(x - MODAL_W / 2);
+        yMoveContainer.current?.(y - MODAL_H / 2);
+        xMoveCursor.current?.(x - 40);
+        yMoveCursor.current?.(y - 40);
+        xMoveCursorLabel.current?.(x - 40);
+        yMoveCursorLabel.current?.(y - 40);
     };
 
     const manageModal = (isActive: boolean, idx: number, x: number, y: number) => {
@@ -152,6 +160,7 @@ export default function Projects() {
                         title={project.title}
                         category={project.category}
                         year={project.year}
+                        link={project.link}
                         manageModal={manageModal}
                     />
                 ))}
@@ -165,6 +174,9 @@ export default function Projects() {
                     animate={active ? "enter" : "closed"}
                     className={styles.modalContainer}
                     style={{ pointerEvents: active ? 'auto' : 'none' }}
+                    onClick={() => {
+                        if (active) window.open(projects[index].link, '_blank', 'noopener,noreferrer');
+                    }}
                 >
                     <div style={{ top: index * -100 + "%" }} className={styles.modalSlider}>
                         {projects.map((project, idx) => {

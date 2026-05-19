@@ -79,17 +79,25 @@
     transition: transform 0.4s ease;
 }
 
-.projectMeta p {
+.projectType {
     margin: 0;
     font-weight: 300;
-    font-size: 1rem;
-    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.05rem;
+    color: rgba(255, 255, 255, 0.9);
+    letter-spacing: 0.02em;
+}
+
+.projectCategory {
+    margin: 0;
+    font-weight: 300;
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.55);
     letter-spacing: 0.02em;
 }
 
 .projectMeta span {
     font-size: 0.85rem;
-    color: rgba(255, 255, 255, 0.35);
+    color: rgba(255, 255, 255, 0.4);
     letter-spacing: 0.1em;
 }
 
@@ -105,14 +113,15 @@
     height: 380px;
     width: 420px;
     position: fixed;
-    top: 50%;
-    left: 50%;
+    top: 0;
+    left: 0;
     background-color: #141516;
     pointer-events: none;
     overflow: hidden;
     z-index: 50;
     border-radius: 4px;
     box-shadow: 0 24px 80px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
 }
 
 .modalSlider {
